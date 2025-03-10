@@ -34,6 +34,10 @@ func CreateSelectCountSqlStatement(table string) string {
 	return fmt.Sprintf("SELECT COUNT(*) AS total FROM %s", table)
 }
 
+func CreateSelectCountWithClauseSqlStatement(table, where string) string {
+	return fmt.Sprintf("SELECT COUNT(*) AS total FROM %s WHERE %s", table, where)
+}
+
 func CreateSelectSqlStatementWithOffset(table string, fields []string, page, size int, orderByColumn, orderByDirection string) string {
 	offset := (page - 1) * size
 	sqlcmd := fmt.Sprintf("SELECT %s FROM %s ORDER BY %s %s LIMIT %d OFFSET %d", strings.Join(fields, ","), table, orderByColumn, orderByDirection, size, offset)
