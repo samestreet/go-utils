@@ -43,3 +43,9 @@ func CreateSelectSqlStatementWithOffset(table string, fields []string, page, siz
 	sqlcmd := fmt.Sprintf("SELECT %s FROM %s ORDER BY %s %s LIMIT %d OFFSET %d", strings.Join(fields, ","), table, orderByColumn, orderByDirection, size, offset)
 	return sqlcmd
 }
+
+func CreateSelectSqlStatementWithOffsetAndClause(table string, fields []string, where string, page, size int, orderByColumn, orderByDirection string) string {
+	offset := (page - 1) * size
+	sqlcmd := fmt.Sprintf("SELECT %s FROM %s WHERE %s ORDER BY %s %s LIMIT %d OFFSET %d", strings.Join(fields, ","), table, where, orderByColumn, orderByDirection, size, offset)
+	return sqlcmd
+}
